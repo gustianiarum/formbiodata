@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+
+<div class="row mb-2" layout:fragment="content-header">
+	<div class="col-sm-6">
+		<h1 class="m-0 text-dark">TABEL BIODATA</h1>
+	</div>
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a href="#">Home</a></li>
+			<li class="breadcrumb-item active">TABEL BIODATA 2</li>
+		</ol>
+	</div>
+</div>
+
+
+<div layout:fragment="content-body">
+	<div class="card card-danger">
+		<div class="card-header">
+			<h3 class="card-title">TABEL BIODATA</h3>
+		</div>
+		<!-- /.card-header -->	
+		<div class="card-body">
+			<div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+				<div class="row">
+					<div class="col-sm-12 col-md-6"></div>
+					<div class="col-sm-12 col-md-6"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+					<table id="table_biodata" class="table table-bordered table-hover dataTable dtr-inline"
+					role="grid" aria-describedby="example2_info">
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.card-body -->
+	</div>
+</div>
+
+
+<th:block layout:fragment="add-scripts">
+	<script th:src="@{/assets/plugins/chart.js/Chart.min.js}"></script>
+	<script th:src="@{/assets/js/demo.js}"></script>
+	<script th:src="@{/assets/js/pages/dashboard3.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script>
+		$(function(){
+			$.ajax({
+				type: 'GET',
+				url: '/person/pendidikan',
+				success: function(result){
+					console.log(result);
+					$('#table_biodata').DataTable({
+						data: result,
+						columns: [
+							{
+								title: "NIK",
+								data: "nik"
+							},
+							{
+								title: "Name",
+								data: "name"
+							},
+							{
+								title: "Address",
+								data: "address"
+							},
+							{
+								title: "No.HP",
+								data: "hp"
+							},
+							{
+								title: "Tanggal Lahir",
+								data: "tgl"
+							},
+							{
+								title: "Tempat Lahir",
+								data: "tempatLahir"
+							},
+							{
+								title: "Umur",
+								data: "umur"
+							},
+							{
+								title: "Pendidikan Terakhir",
+								data: "pendidikan_terakhir"
+							}
+							
+						]
+					});
+				}
+			});
+		});
+	</script>
+</th:block>
+
+</html>

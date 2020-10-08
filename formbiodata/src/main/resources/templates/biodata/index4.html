@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+ <div class="row mb-2" layout:fragment="content-header">
+ 	<div class="col-sm-6">
+  		<h1 class="m-0 text-dark">Data Person</h1>
+ 	</div>
+ </div>
+
+ <div class="row" layout:fragment="content-body">
+ 	<div class="col-12">
+  		<div class="card">
+   			<div class="card-header">
+    			<h5>Cari Data Berdasarkan NIK</h5>
+    				<input class="form-control" name="nik" id="nik" type="text">
+    				<button class="btn-primary" id="cari">Cari</button>
+   			</div>
+   		<div class="card-body table-responsive">
+    		<table class="table table-striped table-bordered table-hover nowrap" id="tableBiodata" style="width:100%">
+    		</table>
+   		</div>
+ 	 </div>
+ 	</div>
+</div>
+
+
+<th:block layout:fragment="add-scripts">
+    <script>
+  		$("#cari").click(function(){
+   		formBiodata.getData($("#nik").val())
+ 		 });
+  		var formBiodata = {
+  			    getData: function (nik) {
+  			        $.ajax({
+  			            url: '/person/pendidikan/' +$("#nik").val(),
+  			            method: 'get',
+  			            contentType: 'application/json',
+  			            dataType: 'json',
+  			            success: function (result) {
+  			                if (result[0].status == "true") {
+  			                    $('#tableBiodata').DataTable({
+  			      				data: [result[0].fullDto],
+  			      columns: [
+  			       {
+  			        title: "NIK",
+  			        data: 'nik'
+  			       },
+  			       {
+  			        title: "Nama",
+  			        data: 'name'
+  			       },
+  			       {
+  			        title: "Alamat",
+  			        data: 'address'
+  			       },
+  			       {
+  			        title: "No Hp",
+  			        data: 'hp'
+  			       },
+  			       {
+  			        title: "Tanggal Lahir",
+  			        data: 'tgl'
+  			       },
+  			       {
+  			        title: "Tempat Lahir",
+  			        data: 'tempatLahir'
+  			       },
+  			       
+  			       { 
+  			        title: "Umur",
+  			        data: 'umur'
+  			       },
+  			       {
+  			        title: "Pendidikan Terakhir",
+  			        data: 'pendidikan_terakhir'
+  			       }
+  			                       ]
+  			                  });
+
+  			                } else {
+
+  			                }
+  			            },
+  			            error: function (err) {
+  			                console.log(err);
+  			            }
+  			        });
+
+
+  			    }
+
+  			};
+    </script>
+</th:block>
+
+</html>

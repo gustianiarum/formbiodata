@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+
+<div class="row mb-2" layout:fragment="content-header">
+	
+	<div class="col-sm-6">
+		<h1 class="m-0 text-dark">FORM PERSON</h1>
+	</div>
+	
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a href="#">Biodata</a></li>
+			<li class="breadcrumb-item active">Kelola</li>
+		</ol>
+	</div>
+</div>
+
+<div layout:fragment="content-body" class="row">
+	
+	<div class="col-12">
+	<div class="card" style="background-color: #ff0066">
+		
+		<div class="card-header">
+			<h1 class="card-title" style="font-family: 'Allerta';font-size: 35px; color: white">Biodata</h1>
+			<button class="btn-lg float-right btn-default" id="btn-tambah-biodata">Tambah</button>
+		</div>
+
+		<div class="card-body table-responsive" style="background-color:#e6ffee; border-bottom: 3px solid #111111;">
+        <table class="table table-striped table-bordered table-hover nowrap" id="tableBiodata"
+               style="width:100%"></table>
+        </div>
+        </div>
+        </div>
+        
+ <div class="modal fade" id="modal-biodata">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        
+        <div class="modal-header" style="background-color: #ff0066">
+           <h1 class="modal-title" style="color: white; font-family: 'Aleo'">Form Biodata</h1>
+             <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+             	<span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+                
+        <div class="modal-body" style="background-color: #e6ffee">
+          <div class="card-header">
+
+          </div>
+          
+          <form id="form-biodata" role="form">
+          
+          <input name="idBio" type="hidden" id="idBio">
+          <input name="idPerson" type="hidden" id="idPerson">
+          
+          <div class="form-group" style="color: black; font-family: 'Aleo'">
+			<label for="nik">NIK:</label> <input type="text" class="form-control" id="nik" placeholder="Masukkan nik" name="nik">
+		  </div>
+          <div class="form-group" style="color: black; font-family: 'Aleo'">
+			<label for="nama">Nama:</label> <input type="text" class="form-control" id="nama" placeholder="Masukkan nama" name="name">
+		  </div>
+
+		  <div class="form-group"style="color: black; font-family: 'Aleo'">
+			<label for="alamat">Alamat:</label>
+			<textarea class="form-control" rows="3" id="alamat" placeholder="Masukkan alamat" name="address"></textarea>
+		  </div>
+		  
+		  <div class="form-group" style="color: black; font-family: 'Aleo'">
+			<label for="tgl">Tempat Lahir:</label>
+			<input class="form-control" id="tgl" placeholder="Masukkan nomor handphone" name="tempatLahir">
+		  </div>
+		  
+		  <div class="form-group" style="color: black; font-family: 'Aleo'">
+				<label>Tanggal lahir:</label>
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<i class="far fa-calendar-alt"></i>
+					</span>
+				</div>
+				<input type="date" class="form-control date"
+						data-inputmask-alias="datetime"
+						data-inputmask-inputformat="dd/mm/yyyy" data-mask
+						placeholder="dd/mm/yyyy" name="tgl" id="tgl">
+			</div>
+			</div>
+			
+			 <div class="form-group" style="color: black; font-family: 'Aleo'">
+			<label for="hp">Nomor Handphone:</label>
+			<input class="form-control" id="hp" placeholder="Masukkan nomor handphone" name="hp">
+		  </div>
+
+
+			</form>
+		</div>
+		<div class="modal-footer justify-content-between">
+             <button class="btn btn-primary" data-dismiss="modal" type="button">Close</button>
+             <button class="btn btn-primary" id="btn-save-biodata" type="button">Save</button>
+       </div>
+       </div>
+       </div>
+       </div>
+       </div>
+				
+
+<th:block layout:fragment="add-scripts">
+	<script th:src="@{/assets/plugins/chart.js/Chart.min.js}"></script>
+	<script th:src="@{/assets/dist/js/demo.js}"></script>
+	<script th:src="@{/assets/dist/js/pages/dashboard3.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script th:src="@{/assets/js/biodata.js}"></script>
+	<script>
+		tableBiodata.create();
+		 
+		$('#btn-tambah-biodata').click(function () {
+	            formBiodata.resetForm();
+	            $('#modal-biodata').modal('show')
+	     });
+        $('#btn-save-biodata').click(function () {
+	            formBiodata.saveForm();
+	      });
+    </script>
+
+</th:block>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+
+<div class="row mb-2" layout:fragment="content-header">
+	<div class="col-sm-12">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a href="#">Home</a></li>
+			<li class="breadcrumb-item active">Form Pendidikan</li>
+		</ol>
+	</div>
+</div>
+
+
+<div layout:fragment="content-body" class="row">
+	<div class="col-sm-12">
+		<div class="card card-danger">
+
+			<div class="card-header">
+				<h1 class="card-title">FORM PENDIDIKAN</h1>
+			</div>
+
+			<div class="card-body">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="idPerson"
+								name="idPerson" placeholder="Masukkan ID">
+						</div>
+						<div class="col-sm-2">
+							<button type="button" class="btn btn-secondary"
+								id="btn-tambah-pendidikan" data-toggle="modal"
+								data-target="#modal1">Tambah</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card-body table-rensponsive">
+				<div class="row">
+					<div class="col-sm-12">
+						<table id="table_pendidikan"
+							class="table table-bordered table-hover dataTable dtr-inline"
+							style="width: 100%">
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12" align="right">
+						<button type="button" class="btn btn-default" id="delete">Delete</button>
+						<button type="button" class="btn btn-info" id="saveAll"
+							data-toggle="modal" data-target="#modal2">Save All</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="modal fade" id="modal1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header bg-cyan">
+					<h4 class="modal-title">
+						<b>RIWAYAT PENDIDIKAN</b>
+					</h4>
+					<button aria-label="close" class="close" data-dismiss="modal"
+						type="button">
+						<span aria-hidden="true">x</span>
+					</button>
+				</div>
+
+				<div class="modal_body">
+					<form id="form" role="form">
+
+						<div class="form-group">
+							<label for="jenjang">Jenjang:</label> <select
+								class="form-control" id="jenjang" name="jenjang" required>
+								<option selected value="null">Pilih...</option>
+								<option value="sd">SD</option>
+								<option value="smp">SMP</option>
+								<option value="sma">SMA</option>
+								<option value="s1">S1</option>
+								<option value="s2">S2</option>
+								<option value="s3">S3</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label>Institusi:</label> <input type="text" class="form-control"
+								id="institusi" placeholder="Masukkan nama institusi"
+								name="institusi" required>
+						</div>
+
+						<div class="form-group">
+							<label>Tahun Masuk:</label> <input type="text"
+								class="form-control" id="masuk"
+								placeholder="Masukkan tahun masuk" name="masuk" required>
+						</div>
+
+						<div class="form-group">
+							<label for="lulus">Tahun Lulus:</label> <input type="text"
+								class="form-control" id="lulus"
+								placeholder="Masukkan tahun lulus" name="lulus" required>
+						</div>
+					</form>
+				</div>
+
+				<div class="modal-footer justify-content-between">
+					<button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+					<button class="btn btn-info" id="btn-save-pendidikan" type="button">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="modal2">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header bg-cyan">
+					<h4 class="modal-title">
+						<b>RIWAYAT PENDIDIKAN</b>
+					</h4>
+					<button aria-label="close" class="close" data-dismiss="modal"
+						type="button">
+						<span aria-hidden="true">x</span>
+					</button>
+				</div>
+
+				<div class="modal_body">
+					<form id="form2" role="form">
+
+						<div class="form-group">
+							<label for="jenjang">Jenjang:</label> <select
+								class="form-control" id="jenjang2" name="jenjang" required>
+								<option selected value="null">Pilih...</option>
+								<option value="sd">SD</option>
+								<option value="smp">SMP</option>
+								<option value="sma">SMA</option>
+								<option value="s1">S1</option>
+								<option value="s2">S2</option>
+								<option value="s3">S3</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label>Institusi:</label> <input type="text" class="form-control"
+								id="institusi2" placeholder="Masukkan nama institusi"
+								name="institusi" required>
+						</div>
+
+						<div class="form-group">
+							<label>Tahun Masuk:</label> <input type="text"
+								class="form-control" id="masuk2"
+								placeholder="Masukkan tahun masuk" name="masuk" required>
+						</div>
+
+						<div class="form-group">
+							<label for="lulus">Tahun Lulus:</label> <input type="text"
+								class="form-control" id="lulus2"
+								placeholder="Masukkan tahun lulus" name="lulus" required>
+						</div>
+					</form>
+				</div>
+
+				<div class="modal-footer justify-content-between">
+					<button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+					<button class="btn btn-info" id="btn-save-pendidikan2"
+						type="button">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<th:block layout:fragment="add-scripts">
+	<script th:src="@{/assets/plugins/chart.js/Chart.min.js}"></script>
+	<script th:src="@{/assets/js/default.js}"></script>
+	<script th:src="@{/assets/dist/js/demo.js}"></script>
+	<script th:src="@{/assets/dist/js/pages/dashboard3.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script>
+		var inp = [];
+		var kode = 0;
+		var formPendidikan = {
+			resetForm : function() {
+				$('#form')[0].reset();
+			},
+			addToTable : function() {
+				// if ($('#form').parsley().validate()) {
+					var dataResult = getJsonForm($("#form").serializeArray(), true);
+					console.log(dataResult);
+					inp.push(dataResult);
+
+					if ($.fn.DataTable.isDataTable('#table_pendidikan')) {
+						// table yang sudah dibentuk menjadi datatable harus di rebuild lagi untuk di instansiasi ulang
+						$('#table_pendidikan').DataTable().clear();
+						$('#table_pendidikan').DataTable().destroy();
+					// }
+				}
+				$('#modal1').modal('hide')
+			},
+			create : function() {
+				$('#table_pendidikan').DataTable({
+									data : inp,
+									columns : [
+											{
+												title : "Jenjang",
+												data : "jenjang"
+											},
+											{
+												title : "Institusi",
+												data : "institusi"
+											},
+											{
+												title : "Tahun Masuk",
+												data : "masuk"
+											},
+											{
+												title : "Tahun Lulus",
+												data : "lulus"
+											},
+											{
+												title : "Aksi",
+												data : null,
+												render : function(data, type,
+														full, meta) {
+													return "<button class='btn btn-secondary' onclick=formPendidikan.setEditData('"
+															+ meta.row
+															+ "')>Edit</button>"
+												}
+											} ]
+								});
+			},
+			addToTableEdit : function() {
+				if ($('#form2').parsley().validate()) {
+					var dataResult = getJsonForm($("#form2").serializeArray(),
+							true);
+					inp[kode] = dataResult;
+					console.log(inp[kode]);
+
+					if ($.fn.DataTable.isDataTable('#table_pendidikan')) {
+						// table yang sudah dibentuk menjadi datatable harus di rebuild lagi untuk di instansiasi ulang
+						$('#table_pendidikan').DataTable().clear();
+						$('#table_pendidikan').DataTable().destroy();
+					}
+					$('#modal2').modal('hide')
+				}
+			},
+			setEditData : function(i) {
+				kode = i;
+				console.log(inp);
+
+				let jenjang = inp[i].jenjang;
+				let institusi = inp[i].institusi;
+				let masuk = inp[i].masuk;
+				let lulus = inp[i].lulus;
+				$('#jenjang2').val(jenjang);
+				$('#institusi2').val(institusi);
+				$('#masuk2').val(masuk);
+				$('#lulus2').val(lulus);
+				$('#modal2').modal('show')
+			},
+			saveAll : function() {
+				console.log(inp);
+				$.ajax({
+					url : '/pendidikan/person/' + $("#idPerson").val(),
+					type : 'POST',
+					contentType : 'application/json',
+					dataType : 'json',
+					data : JSON.stringify(inp),
+					success : function(result) {
+						alert('status: ' + result.status + '\nmessage: '
+								+ result.message);
+						$('#table_pendidikan').DataTable().clear();
+						$('#table_pendidikan').DataTable().destroy();
+					},
+					error : function(xhr) {
+						alert('Error! ' + xhr.status + ' ' + xhr.statusText);
+					}
+				});
+			}
+		}
+
+		$('#btn-tambah-pendidikan').click(function() {
+			formPendidikan.resetForm();
+			$('#modal1').modal('show')
+		});
+
+		$('#btn-save-pendidikan').click(function() {
+			formPendidikan.addToTable();
+			formPendidikan.create();
+		});
+
+		$('#btn-save-pendidikan2').click(function() {
+			$('#table_pendidikan').DataTable().clear();
+			$('#table_pendidikan').DataTable().destroy();
+			formPendidikan.addToTableEdit();
+			formPendidikan.create();
+		});
+
+		$('#saveAll').click(function() {
+			formPendidikan.saveAll();
+			$('#table_pendidikan').DataTable().clear();
+			$('#table_pendidikan').DataTable().destroy();
+			$('input[name=idPerson]').val(' ');
+			inp = [];
+
+		});
+
+		$('#delete').click(function() {
+			$('#table_pendidikan').DataTable().clear();
+			$('#table_pendidikan').DataTable().destroy();
+			$('input[name=idPerson]').val(' ');
+			formPendidikan.resetForm();
+		});
+	</script>
+</th:block>
+
+</html>
